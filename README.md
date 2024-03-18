@@ -19,13 +19,13 @@
 
 ## Delegado
 
-- Nombre: 
-- Correo: 
+- Nombre: Diego Rafael Aviles Aguado
+- Correo: diego.aviles.a@uni.pe
 
 ## Subdelegado
 
-- Nombre: 
-- Correo: 
+- Nombre: Nicole Ximena Auqui Castillo
+- Correo: nicole.auqui.c@uni.pe
 
 # RECURSOS UTILES
 

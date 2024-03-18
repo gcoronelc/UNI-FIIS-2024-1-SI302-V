@@ -1,4 +1,4 @@
-
+﻿
 TEMAS DE INVESTIGACIÓN PARA LA PC2
 -------------------------------------------
 01.- Archivos Log
@@ -15,7 +15,7 @@ TEMAS DE INVESTIGACIÓN PARA LA PC2
 
 Practica 2:
 -------------------------------
-Exposixcion: Semana 6
+Exposicion: Semana 6
 Practica: Semana 7
 
 Grupo 1: ESPINOZA RICRA - Tema 02
