@@ -11,17 +11,7 @@ TEMAS DE INVESTIGACIÓN PARA LA PC2
 08.- Java Reflection y ejemplos aplicativos
 09.- Relación entre clases: Asociacion, Herencia, Polimotfismo, Agregación y Composición. 
 10.- Patrón Inyección de Dependencias
+11.- Patrón Dispacher
+12.- 
 
 
-Practica 2:
--------------------------------
-Exposicion: Semana 6
-Practica: Semana 7
-
-Grupo 1: ESPINOZA RICRA - Tema 02
-Grupo 2: VILLAR ROJAS - Tema 07
-Grupo 3: AVILES AGUADO - Tema 06
-Grupo 4: 
-Grupo 5: 
-Grupo 6: 
-Grupo 7: 
