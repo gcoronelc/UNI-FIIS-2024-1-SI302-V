@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import pe.edu.uni.eurekaapp.db.AccesoDB;
+import pe.edu.uni.eurekaapp.dto.CuentaDto;
 import pe.edu.uni.eurekaapp.dto.MoviDto;
 
 public class CuentaService {
@@ -80,8 +81,16 @@ public class CuentaService {
 			// Confirmar Tx
 			cn.commit();
 		} catch (SQLException e) {
+			try {
+				cn.rollback();
+			} catch (Exception e1) {
+			}
 			throw new RuntimeException(e.getMessage());
 		} catch (Exception e) {
+			try {
+				cn.rollback();
+			} catch (Exception e1) {
+			}
 			throw new RuntimeException("Error en el proceso, intentelo mas tarde.");
 		} finally {
 			try {
@@ -136,4 +145,54 @@ public class CuentaService {
 		return lista;		
 	}
 
+	
+	public List<CuentaDto> getCuentas(String sucursal){
+		// Variables
+		List<CuentaDto> lista = new ArrayList<>();
+		String sql = "SELECT chr_sucucodigo CODIGO,";
+		sql += "C.chr_cuencodigo CUENTA,";
+		sql += "chr_monecodigo MONEDA,";
+		sql += "CONCAT(CL.vch_clienombre,', ',CL.vch_cliepaterno,' ',CL.vch_cliematerno) CLIENTE,";
+		sql += "dec_cuensaldo SALDO,";
+		sql += "vch_cuenestado ESTADO ";
+		sql += "FROM CUENTA C ";
+		sql += "JOIN Cliente CL ON C.chr_cliecodigo = CL.chr_cliecodigo ";
+		sql += "WHERE chr_sucucodigo = ?";
+		Connection cn = null;
+		PreparedStatement pstm;
+		ResultSet rs;
+		// Proceso
+		try {
+			// Conexion
+			cn = AccesoDB.getConnection();
+			// Preparando la consulta
+			pstm = cn.prepareStatement(sql);
+			pstm.setString(1, sucursal);
+			// Ejecutando la consulta
+			rs = pstm.executeQuery();
+			while(rs.next()){
+				String codigo = rs.getString("codigo");
+				String cuenta = rs.getString("cuenta");
+				String moneda = rs.getString("moneda");
+				String cliente = rs.getString("cliente");
+				double saldo = rs.getDouble("saldo");
+				String estado = rs.getString("estado");
+				CuentaDto dto = new CuentaDto(codigo, cuenta, moneda, cliente, saldo, estado);
+				lista.add(dto);
+			}
+			// Liberando objetos
+			rs.close();
+			pstm.close();
+		} catch (Exception e) {
+			throw new RuntimeException("Error en el proceso.");
+		} finally{
+			try {
+				cn.close();
+			} catch (Exception e) {
+			}
+		}
+		// Reporte
+		return lista;
+	}
+	
 }

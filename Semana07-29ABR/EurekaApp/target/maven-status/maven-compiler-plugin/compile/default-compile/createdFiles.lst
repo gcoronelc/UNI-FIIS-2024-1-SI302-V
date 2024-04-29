@@ -1,7 +1,9 @@
 pe\edu\uni\eurekaapp\dto\MoviDto.class
+pe\edu\uni\eurekaapp\dto\CuentaDto.class
 pe\edu\uni\eurekaapp\service\CuentaService.class
 pe\edu\uni\eurekaapp\prueba\Prueba01.class
 pe\edu\uni\eurekaapp\EurekaApp.class
 pe\edu\uni\eurekaapp\prueba\Prueba02.class
+pe\edu\uni\eurekaapp\prueba\Prueba04.class
 pe\edu\uni\eurekaapp\prueba\Prueba03.class
 pe\edu\uni\eurekaapp\db\AccesoDB.class
