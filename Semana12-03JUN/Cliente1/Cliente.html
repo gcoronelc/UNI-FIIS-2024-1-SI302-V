@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente</title>
+</head>
+
+<body>
+    <h1>CONSULTAR UN CLIENTE</h1>
+    <form>
+        <fieldset style="padding: 30px;">
+            <legend>Código del cliente</legend>
+            <input type="text" id="codigo" name="codigo" required>
+            <button type="button" id="btnConsultar">Consultar</button>
+        </fieldset>
+    </form>
+
+    <div id="divDatos" style="display: none;">
+
+    </div>
+
+
+    <script src="jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#btnConsultar").click(fnBtnConsultar);
+        });
+
+        function fnBtnConsultar() {
+            $("#divDatos").hide();
+            let codigo = $("#codigo").val();
+            $.ajax({
+                type: 'GET',
+                url: "http://10.11.7.106:8080/clientes/" + codigo,
+                success: function (data) {
+                    console.log(data);
+                    let html = "<h1>DATOS DEL CLIENTE</h1>";
+                    html += "<p>Codigo: " + data.codigo + "</p>";
+                    html += "<p>Paterno: " + data.paterno + "</p>";
+                    html += "<p>Materno: " + data.materno + "</p>";
+                    html += "<p>Nombre: " + data.nombre + "</p>";
+                    html += "<p>DNI: " + data.dni + "</p>";
+                    $("#divDatos").html(html);
+                    $("#divDatos").show();
+                },
+                statusCode: {
+                    404: function () {
+                        $("#divDatos").html("Error, codigo no existe.");
+                        $("#divDatos").show();
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
