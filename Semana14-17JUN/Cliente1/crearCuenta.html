@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUEVA CUENTA</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>CREAR NUEVA CUENTA</h1>
+        <div class="card">
+            <div class="card-header">
+                Datos para la nueva cuenta
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="cliente" placeholder="Codigo del cliente">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="moneda" class="col-sm-2 col-form-label">Moneda</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="moneda" placeholder="Codigo de moneda">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="saldo" class="col-sm-2 col-form-label">Importe</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="saldo" placeholder="Importe de apertura">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="clave" class="col-sm-2 col-form-label">Clave</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="clave" placeholder="Clave de la cuenta">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10 offset-sm-2">
+                            <button type="button" id="btnProcesar" class="btn btn-primary">Procesar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(function () {
+            $("#btnProcesar").click(fnBtnProcesar);
+        });
+
+        function fnBtnProcesar() {
+            // datos
+            let cliente = $("#cliente").val();
+            let moneda = $("#moneda").val();
+            let clave =  $("#clave").val();
+            let saldo =  $("#saldo").val();
+            let empleado = gEmpleado;
+            let datos = {
+                    "moneda": moneda,
+                    "empleado": empleado,
+                    "cliente": cliente,
+                    "saldo": saldo,
+                    "clave": clave
+                };
+            console.log(datos);
+            // Proceso
+            var settings = {
+                "url": "http://localhost:8080/cuentas/crear",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify(datos),
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                alert(response);
+            });
+        }
+
+
+    </script>
+</body>
+
+</html>
